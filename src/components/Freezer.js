@@ -3,7 +3,6 @@ import { getFreezer, createFreezer, updateFreezer, deleteFreezer } from './ApiSe
 
 const Freezers = () => {
   const [freezers, setFreezers] = useEffect([]);
-  const [newFreezer, setNewFreezer] = useState({ freezerNum: ''});
 
   useEffect(() => {
     loadFreezers();
@@ -18,33 +17,33 @@ const Freezers = () => {
     }
   };
 
-  const handleCreateFreezer = async () => {
-    try {
-      await createFreezer(newFreezer);
-      loadFreezers();
-      setNewFreezer({ freezerNum: 0 });
-    } catch (error) {
-      console.error('Error when creating freezer:', error);
-    }
-  };
+  // const handleCreateFreezer = async () => {
+  //   try {
+  //     await createFreezer(newFreezer);
+  //     loadFreezers();
+  //     setNewFreezer({ freezerNum: 0 });
+  //   } catch (error) {
+  //     console.error('Error when creating freezer:', error);
+  //   }
+  // };
 
-  const handleUpdateFreezer = async (id, updatedFreezer) => {
-    try {
-      await updateFreezer(id, updatedFreezer);
-      loadFreezers();
-    } catch (error) {
-      console.error('Error when updating freezer:', error);
-    }
-  };
+  // const handleUpdateFreezer = async (id, updatedFreezer) => {
+  //   try {
+  //     await updateFreezer(id, updatedFreezer);
+  //     loadFreezers();
+  //   } catch (error) {
+  //     console.error('Error when updating freezer:', error);
+  //   }
+  // };
 
-  const handleDeleteFreezer = async (id) => {
-    try {
-      await deleteFreezer(id);
-      loadFreezers();
-    } catch (error) {
-      console.error('Error when deleting freezer:', error);
-    }
-  };
+  // const handleDeleteFreezer = async (id) => {
+  //   try {
+  //     await deleteFreezer(id);
+  //     loadFreezers();
+  //   } catch (error) {
+  //     console.error('Error when deleting freezer:', error);
+  //   }
+  // };
 
   return (
     // <div>
@@ -82,15 +81,14 @@ const Freezers = () => {
           {freezers.map((freezer) => (
             <tr key={freezer.freezerId}>
               <td>{freezer.freezerNum}</td>
-              <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
+              {/* <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
                 Update Freezer
               </button>
               <button onClick={() => handleDeleteFreezer(freezer.freezerId)}>
                 Delete Freezer
-              </button>
+              </button> */}
             </tr>
           ))}
-
         </tbody>
       </table>
     </div>
