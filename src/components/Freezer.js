@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { getFreezer, createFreezer, updateFreezer, deleteFreezer } from './ApiService';
+import { getFreezer } from './ApiService';
 
 const Freezers = () => {
-  const [freezers, setFreezers] = useEffect([]);
+  const [freezers, setFreezers] = useState([]);
 
   useEffect(() => {
     loadFreezers();
@@ -81,12 +81,7 @@ const Freezers = () => {
           {freezers.map((freezer) => (
             <tr key={freezer.freezerId}>
               <td>{freezer.freezerNum}</td>
-              {/* <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
-                Update Freezer
-              </button>
-              <button onClick={() => handleDeleteFreezer(freezer.freezerId)}>
-                Delete Freezer
-              </button> */}
+
             </tr>
           ))}
         </tbody>
