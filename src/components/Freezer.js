@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getFreezer } from './ApiService';
+import { getFreezer, createFreezer } from './ApiService';
 
 const Freezers = () => {
   const [freezers, setFreezers] = useState([]);
+  const [newFreezer, setNewFreezer] = useState({ freezerId: 0 });
 
   useEffect(() => {
     loadFreezers();
@@ -17,15 +18,15 @@ const Freezers = () => {
     }
   };
 
-  // const handleCreateFreezer = async () => {
-  //   try {
-  //     await createFreezer(newFreezer);
-  //     loadFreezers();
-  //     setNewFreezer({ freezerNum: 0 });
-  //   } catch (error) {
-  //     console.error('Error when creating freezer:', error);
-  //   }
-  // };
+  const handleCreateFreezer = async () => {
+    try {
+      await createFreezer(newFreezer);
+      loadFreezers();
+      setNewFreezer({ freezerId: 0 });
+    } catch (error) {
+      console.error('Error when creating freezer:', error);
+    }
+  };
 
   // const handleUpdateFreezer = async (id, updatedFreezer) => {
   //   try {
@@ -61,14 +62,14 @@ const Freezers = () => {
     //       </li>
     //     ))}
     //   </ul>
-    //   <input 
-    //     type="number"
-    //     value={newFreezer.freezerNum}
-    //     onChange={(event) => setNewFreezer({ freezerNum: event.target.valueAsNumber })}
-    //   />
-    //   <button onClick={handleCreateFreezer}>
-    //     Create Freezer
-    //   </button>
+      // <input 
+      //   type="number"
+      //   value={newFreezer.freezerNum}
+      //   onChange={(event) => setNewFreezer({ freezerNum: event.target.valueAsNumber })}
+      // />
+      // <button onClick={handleCreateFreezer}>
+      //   Create Freezer
+      // </button>
     // </div>
     <div>
       <table>
@@ -86,6 +87,14 @@ const Freezers = () => {
           ))}
         </tbody>
       </table>
+      <input 
+        type="number"
+        value={newFreezer.freezerNum}
+        onChange={(event) => setNewFreezer({ freezerNum: event.target.valueAsNumber })}
+      />
+      <button onClick={handleCreateFreezer}>
+        Create Freezer
+      </button>
     </div>
   );
 };
