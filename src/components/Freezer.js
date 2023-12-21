@@ -4,6 +4,7 @@ import { getFreezer, createFreezer, updateFreezer } from './ApiService';
 const Freezers = () => {
   const [freezers, setFreezers] = useState([]);
   const [newFreezer, setNewFreezer] = useState({ freezerId: 0 });
+  const [updatedFreezer, setUpdatedFreezer] = useState([]);
 
   useEffect(() => {
     loadFreezers();
@@ -34,6 +35,7 @@ const Freezers = () => {
       loadFreezers();
     } catch (error) {
       console.error('Error when updating freezer:', error);
+      console.warn("response", error.response?.data);
     }
   };
 
@@ -82,7 +84,14 @@ const Freezers = () => {
           {freezers.map((freezer) => (
             <tr key={freezer.freezerId}>
               <td>{freezer.freezerNum}</td>
-              <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>Update Freezer</button>
+              <td>
+                <input
+                  type="number"
+                  value={updatedFreezer.freezerId}
+                  onChange={(event) => setUpdatedFreezer({ freezerNum: event.target.valueAsNumber})}
+                />
+              </td>
+              <button onClick={() => handleUpdateFreezer(freezer.freezerId, updatedFreezer)}>Update Freezer</button>
             </tr>
           ))}
         </tbody>
