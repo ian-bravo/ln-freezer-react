@@ -3,7 +3,7 @@ import { getFreezer, createFreezer, updateFreezer, deleteFreezer } from './ApiSe
 
 const Freezers = () => {
   const [freezers, setFreezers] = useEffect([]);
-  const [newFreezer, setNewFreezer] = useState({ freezerNum: 0});
+  const [newFreezer, setNewFreezer] = useState({ freezerNum: ''});
 
   useEffect(() => {
     loadFreezers();
@@ -47,29 +47,52 @@ const Freezers = () => {
   };
 
   return (
+    // <div>
+    //   <h1>Current Freezers</h1>
+    //   <ul>
+    //     {freezers.map((freezer) => (
+    //       <li key={freezer.freezerId}>
+    //         {freezer.freezerNum}
+    //         <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
+    //           Update Freezer
+    //         </button>
+    //         <button onClick={() => handleDeleteFreezer(freezer.freezerId)}>
+    //           Delete Freezer
+    //         </button>
+    //       </li>
+    //     ))}
+    //   </ul>
+    //   <input 
+    //     type="number"
+    //     value={newFreezer.freezerNum}
+    //     onChange={(event) => setNewFreezer({ freezerNum: event.target.valueAsNumber })}
+    //   />
+    //   <button onClick={handleCreateFreezer}>
+    //     Create Freezer
+    //   </button>
+    // </div>
     <div>
-      <h1>Current Freezers</h1>
-      <ul>
-        {freezers.map((freezer) => (
-          <li key={freezer.freezerId}>
-            {freezer.freezerNum}
-            <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
-              Update Freezer
-            </button>
-            <button onClick={() => handleDeleteFreezer(freezer.freezerId)}>
-              Delete Freezer
-            </button>
-          </li>
-        ))}
-      </ul>
-      <input 
-        type="number"
-        value={newFreezer.freezerNum}
-        onChange={(event) => setNewFreezer({ freezerNum: event.target.valueAsNumber })}
-      />
-      <button onClick={handleCreateFreezer}>
-        Create Freezer
-      </button>
+      <table>
+        <thread>
+          <tr>
+            <th>Freezers</th>
+          </tr>
+        </thread>
+        <tbody>
+          {freezers.map((freezer) => (
+            <tr key={freezer.freezerId}>
+              <td>{freezer.freezerNum}</td>
+              <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>
+                Update Freezer
+              </button>
+              <button onClick={() => handleDeleteFreezer(freezer.freezerId)}>
+                Delete Freezer
+              </button>
+            </tr>
+          ))}
+
+        </tbody>
+      </table>
     </div>
   );
 };
