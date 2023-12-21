@@ -19,15 +19,31 @@ const Freezers = () => {
   };
 
   const handleCreateFreezer = async () => {
-
+    try {
+      await createFreezer(newFreezer);
+      loadFreezers();
+      setNewFreezer({ freezerNum: 0 });
+    } catch (error) {
+      console.error('Error when creating freezer:', error);
+    }
   };
 
-  const handleUpdateFreezer = async () => {
-
+  const handleUpdateFreezer = async (id, updatedFreezer) => {
+    try {
+      await updateFreezer(id, updatedFreezer);
+      loadFreezers();
+    } catch (error) {
+      console.error('Error when updating freezer:', error);
+    }
   };
 
-  const handleDeleteFreezer = async () => {
-    
+  const handleDeleteFreezer = async (id) => {
+    try {
+      await deleteFreezer(id);
+      loadFreezers();
+    } catch (error) {
+      console.error('Error when deleting freezer:', error);
+    }
   };
 
   return (
