@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFreezer, createFreezer } from './ApiService';
+import { getFreezer, createFreezer, updateFreezer } from './ApiService';
 
 const Freezers = () => {
   const [freezers, setFreezers] = useState([]);
@@ -28,14 +28,14 @@ const Freezers = () => {
     }
   };
 
-  // const handleUpdateFreezer = async (id, updatedFreezer) => {
-  //   try {
-  //     await updateFreezer(id, updatedFreezer);
-  //     loadFreezers();
-  //   } catch (error) {
-  //     console.error('Error when updating freezer:', error);
-  //   }
-  // };
+  const handleUpdateFreezer = async (id, updatedFreezer) => {
+    try {
+      await updateFreezer(id, updatedFreezer);
+      loadFreezers();
+    } catch (error) {
+      console.error('Error when updating freezer:', error);
+    }
+  };
 
   // const handleDeleteFreezer = async (id) => {
   //   try {
@@ -82,7 +82,7 @@ const Freezers = () => {
           {freezers.map((freezer) => (
             <tr key={freezer.freezerId}>
               <td>{freezer.freezerNum}</td>
-
+              <button onClick={() => handleUpdateFreezer(freezer.freezerId, { freezerNum: freezer.freezerNum + 1 })}>Update Freezer</button>
             </tr>
           ))}
         </tbody>
